@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>ACE demo</title>
+  <style type="text/css">
+  h2 { color:#AAA; }
+  #my p a:first-child { color:#F55; }
+  p.second { margin-top:1.2em; border:1px solid #CCC; }
+  </style>
+  <script type="text/javascript" src="ace-ai1.js"></script>
+  <script type="text/javascript">
+  // You can initialize the system on DOM load, this is just an example.
+  window.onload = function() {
+    // here we modify the priority of click events,
+    // and then indicate some elements and properties that can be restyled.
+    ACE.listen({
+      "click": 10
+    }).adapt({
+      "h2": ["font-size", "color"],
+      "#my p a:first-child": ["font-size", "color"],
+      "form input": ["width", "height"],
+      "p.second": ["margin-top", "border-color"]
+    });
+    // that's all, folks!
+  }
+  </script>
+</head>
+
+<body>
+
+<div id="my">
+  <h2>This is a really rough demo</h2>
+  <p>
+    Test paragraph with an <a href="no.html" style="font-size:12px">inline style</a> and a fake <a href="yes.html">link</a>.
+  </p>
+  <p class="second">
+    Test paragraph that will modify its <code>margin-top</code> and <code>border-color</code> properties if interacted.
+  </p>
+</div>
+
+<form>
+  This text field is also set to be adaptable:
+  <input type="text" />
+</form>
+
+<p>See the source code for an explanation on how to configure ACE.</p>
+  
+</body>
+</html>
