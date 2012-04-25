@@ -176,20 +176,20 @@
      * @return {mixed}         Value of CSS property.
      */
     getStyle: function (domElem, cssProp) {
-    	var cssValue = "";
-    	// normalize
-    	cssProp = cssProp.toLowerCase();
+      var cssValue = "";
+      // normalize
+      cssProp = cssProp.toLowerCase();
       /*if (domElem.style[cssProp]) { // inline CSS
         cssValue = domElem.style[cssProp];
-    	} else*/ 
-    	if (window.getComputedStyle) { // W3C
-    		cssValue = window.getComputedStyle(domElem, null).getPropertyValue(cssProp);
-    	} else if (domElem.currentStyle) { // IE: font-size -> fontSize
-    		cssProp = this.dash2camel(cssProp);
-    		cssValue = domElem.currentStyle[cssProp];
-    	}
-    	
-    	return cssValue;
+      } else*/ 
+      if (window.getComputedStyle) { // W3C
+        cssValue = window.getComputedStyle(domElem, null).getPropertyValue(cssProp);
+      } else if (domElem.currentStyle) { // IE: font-size -> fontSize
+        cssProp = this.dash2camel(cssProp);
+        cssValue = domElem.currentStyle[cssProp];
+      }
+
+      return cssValue;
     }, 
     /**
      * Set a CSS style for a given DOM element.
@@ -199,14 +199,14 @@
      * @return void     
      */    
     setStyle: function (domElem, cssProp, cssValue) {
-    	cssProp = cssProp.toLowerCase();
-    	if (domElem.style.setProperty) { // W3C & IE >= 9
+      cssProp = cssProp.toLowerCase();
+      if (domElem.style.setProperty) { // W3C & IE >= 9
         // using "important" instead of null will override user-defined rules
-    		domElem.style.setProperty(cssProp, cssValue, "important"); 
-    	} else if (sty.setAttribute) { // IE: font-size -> fontSize
+        domElem.style.setProperty(cssProp, cssValue, "important"); 
+      } else if (style.setAttribute) { // IE: font-size -> fontSize
         cssProp = this.dash2camel(cssProp);
-    		domElem.style.setAttribute(cssProp, cssValue);
-    	}   
+        domElem.style.setAttribute(cssProp, cssValue);
+      }   
     },
     /** 
      * Convert str with dashes to camelCaseNotation.
@@ -215,7 +215,7 @@
      */
     dash2camel: function(str) {
       return str.replace(/\-(\w)/g, function(strMatch, p1){
-    			return p1.toUpperCase();
+        return p1.toUpperCase();
       });
     },
     /** 
@@ -307,9 +307,9 @@
         var lparen = color.indexOf(')');
         color = color.substring(fparen+1, lparen);
         rgb = color.split(',');
-	      for (var j = 0; j < 3; ++j) {
-	        rgb[j] = parseInt(rgb[j]);
-	      }
+        for (var j = 0; j < 3; ++j) {
+          rgb[j] = parseInt(rgb[j]);
+        }
       }
       // option 2: #RRGGBB format
       else if (color[0] == "#") {
@@ -322,9 +322,9 @@
           rgb[i] = parseInt(col,16);
           start += offset;
         }
-	    }
-	    // else ... bad color definition or plain name given (e.g. 'pink')
-	    return rgb;
+      }
+      // else ... bad color definition or plain name given (e.g. 'pink')
+      return rgb;
     },
     /**
      * Retrieve the parts of a dimension definition (e.g. "15px", "2.5em"...)
